@@ -52,8 +52,7 @@ const ChatInput = ({ onSend, loading = false }: ChatInputProps) => {
           发送
         </Button>
       </div>
-      <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
-        <span>按下 / 使用 prompt 模板</span>
+      <div className="flex items-center justify-end mt-2 text-xs text-gray-400">
         <span>按下 Shift + Enter 换行</span>
       </div>
     </div>

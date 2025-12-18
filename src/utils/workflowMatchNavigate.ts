@@ -121,6 +121,7 @@ export const PARAM_FIELD_NAME_MAP: Record<string, string> = {
   regulartag: "例会类型",
   tagName: "标签名称",
   joinModel: "参会方式",
+  startTime: "例会开始日期",
 };
 
 /* *
@@ -143,11 +144,11 @@ export const PARAM_FIELD_OPTIONS: Record<
   ],
   // meet_appointment 的 type 字段
   type: [
-    { value: "0", label: "类型0" },
-    { value: "1", label: "类型1" },
-    { value: "2", label: "类型2" },
-    { value: "3", label: "类型3" },
-    { value: "4", label: "类型4" },
+    { value: "0", label: "会议" },
+    { value: "1", label: "培训" },
+    { value: "2", label: "分享" },
+    { value: "3", label: "客户接待" },
+    { value: "4", label: "线上客户接待" },
   ],
   // meet_appointment 的 privateModel 字段
   privateModel: [
@@ -202,8 +203,8 @@ export const PARAM_FIELD_OPTIONS: Record<
  * 平台基础 URL 配置
  */
 const PLATFORM_BASE_URL_MAP: Record<string, string> = {
-  agents: "http://test.in.newrank.cn",
-  meet: "http://test.meeting.newrank.cn",
+  agents: "http://test.aichat.newrank.cn",
+  meet: "http://test.Meeting.newrank.cn",
 };
 
 export const ACTION_FIELD_NAME_MAP: Record<string, string> = {
@@ -642,14 +643,6 @@ export const buildWorkflowMatchUrl = async (
         ].includes(result.function);
 
         if (needsCheckWorkflow) {
-          console.log("匹配筛选不是完全匹配，跳转到 check_workflow 功能", {
-            workname,
-            workid,
-            firstResultName: queriedWorkflowList[0]?.name,
-            firstResultFlowId: queriedWorkflowList[0]?.flowId,
-            isExactMatch,
-            queriedCount: queriedWorkflowList.length,
-          });
           finalResult = { ...result, function: "AiAgentsCheckWorkflow" };
         }
       }

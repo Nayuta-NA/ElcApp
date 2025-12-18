@@ -81,25 +81,37 @@ const MessageList = ({
                     <div className="text-xs text-gray-400 mb-1">
                       {formatTime(message.timestamp)}
                     </div>
-                    {message.content && (
-                      <div className="bg-white border border-gray-200 rounded-lg px-4 py-3">
-                        <div className="whitespace-pre-wrap text-gray-800">
-                          {message.content}
+                    {message.functionMatch ? (
+                      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                        {message.content && (
+                          <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
+                            <div className="whitespace-pre-wrap text-gray-800 text-sm">
+                              {message.content}
+                            </div>
+                          </div>
+                        )}
+                        <div>
+                          <FunctionMatchResult
+                            functionMatch={message.functionMatch}
+                            parameters={message.parameters || []}
+                            platform={message.platform}
+                            onParameterChange={(updatedParams) => {
+                              onParameterChange?.(message.id, updatedParams);
+                            }}
+                            onProceed={() => {
+                              onNavigate?.(message.id);
+                            }}
+                          />
                         </div>
                       </div>
-                    )}
-                    {message.functionMatch && (
-                      <FunctionMatchResult
-                        functionMatch={message.functionMatch}
-                        parameters={message.parameters || []}
-                        platform={message.platform}
-                        onParameterChange={(updatedParams) => {
-                          onParameterChange?.(message.id, updatedParams);
-                        }}
-                        onProceed={() => {
-                          onNavigate?.(message.id);
-                        }}
-                      />
+                    ) : (
+                      message.content && (
+                        <div className="bg-white border border-gray-200 rounded-lg px-4 py-3">
+                          <div className="whitespace-pre-wrap text-gray-800">
+                            {message.content}
+                          </div>
+                        </div>
+                      )
                     )}
                   </div>
                 )}
