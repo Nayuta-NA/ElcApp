@@ -2,14 +2,12 @@ import { useState, useEffect } from "react";
 import { Button, Modal } from "antd";
 import { FunctionMatch } from "./FunctionCard";
 import ParameterForm, { Parameter } from "./ParameterForm";
-import { EditOutlined, RightOutlined } from "@ant-design/icons";
 import {
   buildWorkflowMatchUrl,
   WorkflowMatchResult,
   PLATFORM_NAME_MAP,
   FUNCTION_NAME_MAP,
 } from "../../utils/workflowMatchNavigate";
-import { openUrl } from "../../utils/openUrl";
 interface FunctionMatchResultProps {
   functionMatch: FunctionMatch;
   parameters: Parameter[];
@@ -101,7 +99,9 @@ const FunctionMatchResult = ({
 
       const url = await buildWorkflowMatchUrl(result);
       if (url) {
-        await openUrl(url);
+        if (window.electronAPI) {
+          await window.electronAPI.openExternal(url);
+        }
       } else {
         console.error("无法构建 URL");
         alert("无法构建跳转 URL，请检查参数配置");

@@ -1,15 +1,14 @@
-import { app, BrowserWindow, ipcMain, shell } from "electron";
+import { app, BrowserWindow } from "electron";
 import path from "node:path";
 import started from "electron-squirrel-startup";
+import { registerBrowserHandlers } from "./main/browser";
 
 if (started) {
   app.quit();
 }
 
-// 注册 IPC 处理器
-ipcMain.handle("open-external", async (_, url) => {
-  return shell.openExternal(url);
-});
+// 注册浏览器选择相关的 IPC 处理器
+registerBrowserHandlers();
 const createWindow = () => {
   // Create the browser window.
   const preloadPath = path.join(__dirname, "preload.js");
