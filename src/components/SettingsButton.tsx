@@ -18,4 +18,3 @@ const SettingsButton: React.FC<SettingsButtonProps> = ({ onClick }) => {
 };
 
 export default SettingsButton;
-

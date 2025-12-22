@@ -9,6 +9,7 @@ if (started) {
 
 // 注册浏览器选择相关的 IPC 处理器
 registerBrowserHandlers();
+
 const createWindow = () => {
   // Create the browser window.
   const preloadPath = path.join(__dirname, "preload.js");
@@ -31,7 +32,7 @@ const createWindow = () => {
   }
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 app.on("ready", createWindow);

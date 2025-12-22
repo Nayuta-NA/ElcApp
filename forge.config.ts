@@ -1,8 +1,9 @@
 import type { ForgeConfig } from "@electron-forge/shared-types";
-// import { MakerSquirrel } from '@electron-forge/maker-squirrel'; // 需要 7-Zip，暂时禁用
+import { MakerSquirrel } from "@electron-forge/maker-squirrel";
 import { MakerZIP } from "@electron-forge/maker-zip";
 import { MakerDeb } from "@electron-forge/maker-deb";
 import { MakerRpm } from "@electron-forge/maker-rpm";
+import { MakerDMG } from "@electron-forge/maker-dmg";
 import { VitePlugin } from "@electron-forge/plugin-vite";
 import { FusesPlugin } from "@electron-forge/plugin-fuses";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
@@ -10,13 +11,34 @@ import { FuseV1Options, FuseVersion } from "@electron/fuses";
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    name: "Ai-Match",
+    executableName: "Ai-Match",
   },
   rebuildConfig: {},
   makers: [
-    // new MakerSquirrel({}), // 需要 7-Zip，暂时禁用
-    new MakerZIP({}), // 为所有平台创建 ZIP
-    new MakerRpm({}),
-    new MakerDeb({}),
+    new MakerSquirrel({
+      name: "Ai-Match",
+    }),
+    // macOS DMG 安装包
+    new MakerDMG({
+      name: "Ai-Match",
+      format: "UDZO", // 压缩格式
+    }),
+    // Linux DEB 包 (Debian/Ubuntu)
+    new MakerDeb({
+      options: {
+        maintainer: "康凌",
+        homepage: "https://example.com",
+      },
+    }),
+    // Linux RPM 包 (RedHat/CentOS/Fedora)
+    new MakerRpm({
+      options: {
+        name: "Ai-Match",
+      },
+    }),
+    // ZIP 压缩包 (所有平台)
+    new MakerZIP({}),
   ],
   plugins: [
     new VitePlugin({

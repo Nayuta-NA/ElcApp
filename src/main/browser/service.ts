@@ -18,7 +18,6 @@ let settingsFilePath: string | null = null;
 const getSettingsFile = (): string => {
   if (!settingsFilePath) {
     settingsFilePath = path.join(app.getPath("userData"), "settings.json");
-    console.log("设置文件存储路径:", settingsFilePath);
   }
   return settingsFilePath;
 };

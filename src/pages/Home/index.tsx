@@ -126,7 +126,6 @@ const Home = () => {
 
   const handleSelectConversation = (conversation: Conversation) => {
     console.log("选择会话:", conversation);
-    // TODO: 加载会话消息
   };
 
   const handleNewConversation = () => {
@@ -136,19 +135,15 @@ const Home = () => {
 
   const handleDeleteConversation = (id: string) => {
     console.log("删除会话:", id);
-    // TODO: 删除会话
   };
 
   const handleShareConversation = (id: string) => {
     console.log("分享会话:", id);
-    // TODO: 分享会话
   };
 
   return (
     <div className="h-full flex bg-gray-50 rounded-lg overflow-hidden shadow-sm">
-      {/* 主内容区域 */}
       <div className="flex-[0.75] flex flex-col bg-white overflow-hidden">
-        {/* 对话消息区域 */}
         <div className="flex-1 overflow-y-auto">
           <MessageList
             messages={messages}

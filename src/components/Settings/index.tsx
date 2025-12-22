@@ -5,19 +5,8 @@ import BrowserSelector from "./BrowserSelector";
 interface SettingsProps {
   onClose: () => void;
 }
-
-type SettingsSection =
-  | "browser"
-  | "general"
-  | "display"
-  | "data"
-  | "mcp"
-  | "notes"
-  | "websearch"
-  | "memory"
-  | "api"
-  | "document"
-  | "quickphrase";
+//后续可能添加其他设置项
+type SettingsSection = "browser";
 
 const Settings: React.FC<SettingsProps> = ({ onClose }) => {
   const activeSection: SettingsSection = "browser";
@@ -64,7 +53,6 @@ const Settings: React.FC<SettingsProps> = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-gray-50 z-50 flex flex-col">
-      {/* 顶部标题栏 */}
       <div className="h-10 bg-white border-b border-gray-200 flex items-center justify-between px-4">
         <h2 className="text-sm font-medium text-gray-800">设置</h2>
         <button
@@ -76,7 +64,6 @@ const Settings: React.FC<SettingsProps> = ({ onClose }) => {
       </div>
 
       <div className="flex flex-1 overflow-hidden">
-        {/* 左侧边栏 */}
         <div className="w-48 bg-gray-100 border-r border-gray-200 overflow-y-auto">
           <div className="p-2 space-y-1">
             {menuItems.map((item) => (
