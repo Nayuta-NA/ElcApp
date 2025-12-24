@@ -12,7 +12,8 @@
     "make:mac": "electron-forge make --platform=darwin",
     "make:linux": "electron-forge make --platform=linux",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx ."
+    "lint": "eslint --ext .ts,.tsx .",
+    "build": "electron-forge package && electron-builder"
   },
   "keywords": [],
   "author": {
@@ -27,7 +28,6 @@
     "@electron-forge/maker-rpm": "^7.10.2",
     "@electron-forge/maker-squirrel": "^7.10.2",
     "@electron-forge/maker-zip": "^7.10.2",
-    "@electron-forge/plugin-auto-unpack-natives": "^7.10.2",
     "@electron-forge/plugin-fuses": "^7.10.2",
     "@electron-forge/plugin-vite": "^7.10.2",
     "@electron/fuses": "^1.8.0",
@@ -39,14 +39,15 @@
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-react": "^5.1.2",
     "electron": "^33.4.11",
+    "electron-builder": "^26.0.12",
     "eslint": "^8.57.1",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "typescript": "~4.5.4",
-    "unplugin-react-components": "^0.1.4",
     "vite": "^5.4.21"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.4.0",
     "antd": "^6.1.1",
     "axios": "^1.13.2",
     "electron-squirrel-startup": "^1.0.1",

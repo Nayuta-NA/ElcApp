@@ -1,0 +1,56 @@
+{
+  "appId": "com.aimatch.app",
+  "productName": "Ai-Match",
+  "directories": {
+    "output": "dist",
+    "buildResources": "build"
+  },
+  "files": [
+    ".vite/**/*",
+    "package.json",
+    "assets/**/*",
+    "!node_modules/**/*",
+    "!**/*.map",
+    "!**/*.log"
+  ],
+  "extraFiles": [
+    {
+      "from": "node_modules/electron/dist",
+      "to": ".",
+      "filter": [
+        "icudtl.dat",
+        "resources.pak",
+        "v8_context_snapshot.bin",
+        "version",
+        "vk_swiftshader.dll"
+      ]
+    },
+    {
+      "from": "node_modules/electron/dist/locales",
+      "to": "locales",
+      "filter": [
+        "en-US.pak",
+        "en-GB.pak",
+        "zh-CN.pak",
+        "zh-TW.pak"
+      ]
+    }
+  ],
+  "win": {
+    "target": "nsis",
+    "icon": "assets/icons/appIcon.ico",
+    "forceCodeSigning": false
+  },
+  "asar": true,
+  "nsis": {
+    "allowToChangeInstallationDirectory": true,
+    "oneClick": false,
+    "installerIcon": "assets/icons/appIcon.ico",
+    "uninstallerIcon": "assets/icons/appIcon.ico",
+    "installerHeaderIcon": "assets/icons/appIcon.ico",
+    "createDesktopShortcut": true,
+    "runAfterFinish": true,
+    "language": "2052",
+    "deleteAppDataOnUninstall": false
+  }
+}

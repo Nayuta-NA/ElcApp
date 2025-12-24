@@ -17,32 +17,34 @@ const config: ForgeConfig = {
     icon: "assets/icons/appIcon.ico", // Windows 图标路径
   },
   rebuildConfig: {},
+  /**
+   * @makers 打包器配置 输出位置在out目录下，缺陷为不能选择安装位置，没有安装流程，直接快速安装
+   * 指令 @pnpm make:win
+   * 现在使用electron-builder打包，输出位置在dist目录下，有安装流程，可以选择安装位置
+   * 指令 @pnpm build
+   * 后续需要打包成苹果，linux,在根目录下的electron-builder配置即可
+   *
+   */
   makers: [
     new MakerSquirrel({
       name: "Ai-Match",
-      // 绝对路径 安装程序图标
       setupIcon: path.resolve(__dirname, "assets", "icons", "appIcon.ico"),
     }),
-
-    // macOS DMG 安装包
     new MakerDMG({
       name: "Ai-Match",
-      format: "UDZO", // 压缩格式
+      format: "UDZO",
     }),
-    // Linux DEB 包 (Debian/Ubuntu)
     new MakerDeb({
       options: {
         maintainer: "康凌",
         homepage: "https://example.com",
       },
     }),
-    // Linux RPM 包 (RedHat/CentOS/Fedora)
     new MakerRpm({
       options: {
         name: "Ai-Match",
       },
     }),
-    // ZIP 压缩包 (所有平台)
     new MakerZIP({}),
   ],
   plugins: [
@@ -72,7 +74,7 @@ const config: ForgeConfig = {
       [FuseV1Options.EnableCookieEncryption]: true,
       [FuseV1Options.EnableNodeOptionsEnvironmentVariable]: false,
       [FuseV1Options.EnableNodeCliInspectArguments]: false,
-      [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: true,
+      [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: false,
       [FuseV1Options.OnlyLoadAppFromAsar]: true,
     }),
   ],

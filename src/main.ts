@@ -13,9 +13,24 @@ registerBrowserHandlers();
 const createWindow = () => {
   // Create the browser window.
   const preloadPath = path.join(__dirname, "preload.js");
+  // 设置窗口图标路径
+  // 在打包后，资源文件在 app.asar 中，需要使用不同的路径
+  const iconPath =
+    process.platform === "win32"
+      ? process.env.NODE_ENV === "production"
+        ? path.join(
+            process.resourcesPath,
+            "app.asar",
+            "assets",
+            "icons",
+            "appIcon.ico"
+          )
+        : path.join(__dirname, "../../assets/icons/appIcon.ico")
+      : undefined;
   const mainWindow = new BrowserWindow({
     width: 960,
     height: 600,
+    icon: iconPath,
     webPreferences: {
       preload: preloadPath,
       contextIsolation: true,
