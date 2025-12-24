@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Home from "./pages/Home";
 import Settings from "./components/Settings";
 import TitleBar from "./components/TitleBar";
+console.log(1);
 
 const App = () => {
   const [showSettings, setShowSettings] = useState(false);
