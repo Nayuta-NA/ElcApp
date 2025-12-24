@@ -14,4 +14,20 @@ export default defineConfig({
   optimizeDeps: {
     include: ["antd"],
   },
+  build: {
+    outDir: ".vite/renderer/main_window",
+    emptyOutDir: true,
+    minify: "esbuild",
+    rollupOptions: {
+      input: path.resolve(__dirname, "index.html"),
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          antd: ["antd"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+  },
+  base: "./",
 });

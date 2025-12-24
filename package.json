@@ -13,7 +13,13 @@
     "make:linux": "electron-forge make --platform=linux",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
-    "build": "electron-forge package && electron-builder"
+    "build:main": "vite build --config vite.main.config.ts",
+    "build:preload": "vite build --config vite.preload.config.ts",
+    "build:renderer": "vite build --config vite.renderer.config.mjs",
+    "build:vite": "npm run build:main && npm run build:preload && npm run build:renderer",
+    "build": "npm run build:vite && electron-builder",
+    "build:mac": "npm run build:vite && electron-builder --mac",
+    "build:win": "npm run build:vite && electron-builder --win"
   },
   "keywords": [],
   "author": {
