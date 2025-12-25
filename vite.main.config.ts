@@ -17,7 +17,6 @@ export default defineConfig({
         if (id === "electron") {
           return true;
         }
-        // 外部化所有以 node: 开头的内置模块
         if (id.startsWith("node:")) {
           return true;
         }

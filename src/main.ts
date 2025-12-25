@@ -17,6 +17,23 @@ if (started) {
   app.quit();
 }
 
+// 单实例锁定：确保只有一个应用实例运行
+const gotTheLock = app.requestSingleInstanceLock();
+
+if (!gotTheLock) {
+  // 如果已经有实例在运行，退出新实例
+  app.quit();
+} else {
+  // 当第二个实例尝试启动时，激活现有窗口
+  app.on("second-instance", () => {
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  });
+}
+
 // 注册浏览器选择相关的 IPC 处理器
 registerBrowserHandlers();
 
@@ -53,6 +70,9 @@ const getIconPath = () => {
 
 // 创建系统托盘
 const createTray = () => {
+  // 如果托盘已存在，不重复创建
+  if (tray) return;
+
   const iconPath = getIconPath();
   if (!iconPath) return;
 
@@ -165,9 +185,12 @@ const createWindow = () => {
 };
 
 app.on("ready", () => {
-  createWindow();
-  createTray();
-  registerGlobalShortcut();
+  // 确保在单实例锁内才初始化应用
+  if (gotTheLock) {
+    createWindow();
+    createTray();
+    registerGlobalShortcut();
+  }
 });
 
 // 应用退出前注销全局快捷键

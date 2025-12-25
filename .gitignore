@@ -32,8 +32,13 @@ coverage
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
+# Production build
+/build
+
 # Dependency directories
 node_modules/
+/.pnp
+.pnp.js
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -59,6 +64,10 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -94,4 +103,38 @@ out/
 # Electron-Builder
 dist/
 
-out/
+# 可执行文件和二进制文件
+*.exe
+*.dll
+*.so
+*.dylib
+
+# IDE 和编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# 操作系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# 临时文件
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+
+# Playwright test files
+.playwright-mcp/
